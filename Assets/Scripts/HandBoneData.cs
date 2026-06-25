@@ -5,7 +5,7 @@ using UnityEngine.XR.Hands;
 public class HandBoneData
 {
     public Handedness handedness;
-    public HandJointData[] joints;  // Indexed by XRHandJointID order
+    public HandJointData[] joints;
 
     public HandBoneData(Handedness hand)
     {

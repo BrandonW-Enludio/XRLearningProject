@@ -110,11 +110,8 @@ public class HandDataManager : MonoBehaviour
         return Vector3.Distance(posA, posB);
     }
 
-    // Simple finger curl example (0 = straight, 1 = fully curled)
-    // Uses proximal -> intermediate -> distal angles or approximation
     public float GetFingerCurl(Handedness handedness, XRHandJointID proximalJoint)
     {
-        // Example for index: Proximal -> Intermediate -> Distal
         XRHandJointID intermediate = GetNextJoint(proximalJoint);
         XRHandJointID distal = GetNextJoint(intermediate);
 
@@ -127,17 +124,14 @@ public class HandDataManager : MonoBehaviour
 
     private XRHandJointID GetNextJoint(XRHandJointID current)
     {
-        // Simple mapping - expand for full finger logic
         switch (current)
         {
             case XRHandJointID.IndexProximal: return XRHandJointID.IndexIntermediate;
             case XRHandJointID.IndexIntermediate: return XRHandJointID.IndexDistal;
-            // Add cases for other fingers...
             default: return current;
         }
     }
 
-    // Validation helper
     public bool IsHandValid(Handedness handedness)
     {
         return handDataDict.TryGetValue(handedness, out var data) &&
@@ -149,7 +143,6 @@ public class HandDataManager : MonoBehaviour
         if (!handDataDict.TryGetValue(hand, out var data))
             return null;
 
-        // Deep copy so we don't send a live updating object
         var snapshot = new HandBoneData(hand);
         Array.Copy(data.joints, snapshot.joints, data.joints.Length);
         return snapshot;

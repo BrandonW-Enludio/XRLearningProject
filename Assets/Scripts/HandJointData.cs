@@ -5,11 +5,11 @@ using UnityEngine.XR.Hands;
 public struct HandJointData
 {
     public XRHandJointID jointID;
-    public Vector3 position;      // Local or world
+    public Vector3 position;
     public Quaternion rotation;
-    public float radius;          // Optional: joint thickness
+    public float radius;
     public XRHandJointTrackingState trackingState;
-    public bool isValid;          // Convenience flag
+    public bool isValid;
 
     public HandJointData(XRHandJoint joint)
     {
